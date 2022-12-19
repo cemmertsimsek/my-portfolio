@@ -1,10 +1,5 @@
 import './portfolio.css';
-import IMG1 from '../../assets/portfolio1.jpg';
-// import IMG2 from '../../assets/portfolio2.jpg';
-// import IMG3 from '../../assets/portfolio3.jpg';
-// import IMG4 from '../../assets/portfolio4.jpg';
-// import IMG5 from '../../assets/portfolio5.jpg';
-// import IMG6 from '../../assets/portfolio6.jpg';
+import data from './data.js';
 
 const Portfolio = () => {
   return (
@@ -13,24 +8,34 @@ const Portfolio = () => {
       <h2>Portfolio</h2>
 
       <div className="container portfolio__container">
-        <article className="portfolio__item">
-          <div className="portfolio__item-image">
-            <img src={IMG1} alt="img1" />
-          </div>
-          <h3>This is a portfolio item title</h3>
-          <div className="portfolio__item-cta">
-            <a href="GITHUB LINK HERE" className="btn" target="_blank">
-              Github
-            </a>
-            <a
-              href="LIVE PROJECT LINK HERE"
-              className="btn btn-primary"
-              target="_blank"
-            >
-              Live Demo
-            </a>
-          </div>
-        </article>
+        {data.map(({ id, image, title, github, demo }) => {
+          return (
+            <article key={id} className="portfolio__item">
+              <div className="portfolio__item-image">
+                <img src={image} alt={title} />
+              </div>
+              <h3>{title}</h3>
+              <div className="portfolio__item-cta">
+                <a
+                  href={github}
+                  className="btn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Github
+                </a>
+                <a
+                  href={demo}
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Live Demo
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
